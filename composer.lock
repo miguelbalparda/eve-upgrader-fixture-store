@@ -1,0 +1,16 @@
+{
+  "packages": [
+    {
+      "name": "magento/product-community-edition",
+      "version": "2.4.8-p4"
+    },
+    {
+      "name": "magento/framework",
+      "version": "103.0.8-p4"
+    },
+    {
+      "name": "acme/shipping-rates",
+      "version": "3.2.1"
+    }
+  ]
+}
