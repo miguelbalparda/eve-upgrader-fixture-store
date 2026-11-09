@@ -1,0 +1,307 @@
+{
+  "schemaVersion": 1,
+  "runId": "upg-20261109-223732-30223f",
+  "siteId": "d46515efa7",
+  "cohort": "nexcess",
+  "mode": "upgrade",
+  "replayOf": null,
+  "startedAt": "2026-11-09T22:37:32.379Z",
+  "finishedAt": null,
+  "tier": "green",
+  "outcome": "verified_green",
+  "from": "2.4.8-p4",
+  "to": "2.4.8-p5",
+  "stack": {
+    "php": "8.3.36",
+    "db": "10.5.16-MariaDB",
+    "searchEngine": "opensearch 2.19.4",
+    "composer": "2.10.3",
+    "os": "CentOS Linux 7 (Core)",
+    "distribution": "magento-community",
+    "installType": "composer"
+  },
+  "composerLockHash": {
+    "before": "2586cdab3811947ac8abb66a23b06c4028d24c78440c448df5470b7e835fa26f",
+    "after": "0a2cbc3f6aeff2ac9b92e32f3ac9d151fd5f9296968512c1d00b24d9d2386956"
+  },
+  "patches": [],
+  "versions": {
+    "eve": "1.0.0-rc.6",
+    "ai": "7.0.166",
+    "zod": "4.5.4",
+    "ssh2": "1.17.0",
+    "node": "v24.22.2",
+    "sandboxImage": "eve default image for this eve release",
+    "programs": {
+      "magento-patch-upgrade.sh": "724fc396ad4b2bf1d93b8dba1fe6109cbaa4a9d033b43953588d8b0af0753e6c",
+      "magento-upgrade-check.sh": "732a89fbcaea1616f75837b802ca34c7c51c80007d98883988be5fd2fdfb0fbd",
+      "magento-audit.sh": "d01ed7f3672fe309572fa939d03db2342e177f8a22dfdcb348ef4769aef46842",
+      "magento-flow-test.sh": "a12c5a01dddf7aedf404c2285f39a17bdc8657237f6197326229b8a5eeff2c94"
+    }
+  },
+  "plan": {
+    "exitCode": 0,
+    "text": "PLAN for /chroot/home/a13e1e5c/d46515efa7.nxcli.io (run 20261109T223837Z)\n  store        : 2.4.8-p4 -> 2.4.8-p5  (magento/product-community-edition)  mode production  db a13e1e5c_473729\n  feasibility  : verdict 2 (upgrade path ok but needs a server migration), score 57 (min 50)\n  snapshot     : /chroot/home/a13e1e5c/.magento-upgrade-eve/server-runs/chroot_home_a13e1e5c_d46515efa7.nxcli.io/20261109T223837Z/snapshot  (code without var/, pub/media, dumps/archives; ~705 MB)\n  build        : /chroot/home/a13e1e5c/.magento-upgrade-eve/server-runs/chroot_home_a13e1e5c_d46515efa7.nxcli.io/20261109T223837Z/build  composer update magento/product-community-edition --with-all-dependencies ; setup:di:compile; static-content:deploy --jobs 4 en_US\n  window       : pause cron -> wait for bin/magento processes (<= 120s) -> maintenance:enable --ip=8.29.157.129,127.0.0.1 -> mysqldump a13e1e5c_473729 (~48 MB) -> rsync build -> live -> setup:upgrade --keep-generated -> cache:flush -> verify -> mysqldump again (upgraded schema) -> no gate -> maintenance:disable\n  post         : HTTP https://d46515efa7.nxcli.io/ expects 200/30x -> crontab restored -> summary.json\n  on failure   : before the window: nothing to undo. Inside: automatic rollback (snapshot + DB dump), exit 30\n  excluded     : /var/ /pub/media/ /app/etc/env.php /.git/ /iworx-backup/ /tmp/ /node_modules/ /*.sql /*.sql.gz /*.zip /*.tar /*.tar.gz /*.tgz /.magento-upgrades/ /pub/sitemap* /pub/robots.txt /pub/.well-known/ /pub/errors/local.xml /pub/static/_cache/ \n",
+    "serverRunDir": "/chroot/home/a13e1e5c/.magento-upgrade-eve/server-runs/chroot_home_a13e1e5c_d46515efa7.nxcli.io/20261109T223837Z",
+    "target": "2.4.8-p5",
+    "from": "2.4.8-p4",
+    "minScore": 50,
+    "promotionMode": "pr-only",
+    "window": null
+  },
+  "phases": [
+    {
+      "name": "setup",
+      "status": "ok",
+      "startedAt": "2026-11-09T22:37:32.388Z",
+      "seconds": 14,
+      "note": "programs in /home/a13e1e5c/.magento-upgrade-eve/programs-73a5afd2dfcf (unchanged), allow IP 8.29.157.129,127.0.0.1"
+    },
+    {
+      "name": "baseline-flow-tests",
+      "status": "ok",
+      "startedAt": "2026-11-09T22:37:49.908Z",
+      "seconds": 31,
+      "note": "14 passed, 0 failed"
+    },
+    {
+      "name": "upgrade-check",
+      "status": "ok",
+      "startedAt": "2026-11-09T22:38:20.772Z",
+      "seconds": 13,
+      "note": "verdict 2, score 57, 2.4.8-p4 -> 2.4.8-p5"
+    },
+    {
+      "name": "upgrade-plan",
+      "status": "ok",
+      "startedAt": "2026-11-09T22:38:33.709Z",
+      "seconds": 23,
+      "note": "plan recorded"
+    },
+    {
+      "name": "upgrade-to-verify",
+      "status": "ok",
+      "startedAt": "2026-11-09T22:39:00.921Z",
+      "seconds": 434,
+      "note": "clone upgraded to 2.4.8-p5 and CLOSED (server run /chroot/home/a13e1e5c/.magento-upgrade-eve/server-runs/chroot_home_a13e1e5c_d46515efa7.nxcli.io/20261109T223905Z)"
+    },
+    {
+      "name": "after-flow-tests",
+      "status": "ok",
+      "startedAt": "2026-11-09T22:46:15.058Z",
+      "seconds": 37,
+      "note": "14 passed, regressions: none, slower: graphql(691ms->2321ms)"
+    },
+    {
+      "name": "deploy-reopen",
+      "status": "ok",
+      "startedAt": "2026-11-09T22:46:51.636Z",
+      "seconds": 16,
+      "note": "clone open on the new release"
+    },
+    {
+      "name": "final-flow-tests",
+      "status": "ok",
+      "startedAt": "2026-11-09T22:47:07.485Z",
+      "seconds": 31,
+      "note": "regressions: none"
+    },
+    {
+      "name": "promote",
+      "status": "running",
+      "startedAt": "2026-11-09T22:47:54.033Z",
+      "seconds": 0,
+      "note": ""
+    }
+  ],
+  "commands": [
+    {
+      "n": 1,
+      "step": "setup",
+      "command": "ensure program dir",
+      "exitCode": 0,
+      "durationMs": 897,
+      "outputRef": "commands/001.log",
+      "stdoutHead": "724fc396ad4b2bf1d93b8dba1fe6109cbaa4a9d033b43953588d8b0af0753e6c  magento-patch-upgrade.sh\n732a89fbcaea1616f75837b802ca34c7c51c80007d98883988be5fd2fdfb0fbd  magento-upgrade-check.sh\nd01ed7f3672fe309572fa939d03db2342e177f8a22dfdcb348ef4769aef46842  magento-audit.sh\na12c5a01dddf7aedf404c2285f39a17bdc8657237f6197326229b8a5eeff2c94  magento-flow-test.sh\n",
+      "stderrHead": "",
+      "at": "2026-11-09T22:37:46.128Z"
+    },
+    {
+      "n": 2,
+      "step": "baseline-flow-tests",
+      "command": "mkdir -p '/home/a13e1e5c/.magento-upgrade-eve/runs/upg-20261109-223732-30223f/flows' && bash '/home/a13e1e5c/.magento-upgrade-eve/programs-73a5afd2dfcf/magento-flow-test.sh' --base 'https://d46515efa7.nxcli.io' --label 'before' -o '/home/a13e1e5c/.magento-upgrade-eve/runs/upg-20261109-223732-30223f/flows/before.json' --quiet --admin-path 'ae60be3fdf_admin'",
+      "exitCode": 0,
+      "durationMs": 27174,
+      "outputRef": "commands/002.log",
+      "stdoutHead": "RESULT: pass (14 passed, 0 failed, 1 skipped, 26s)\njson: /home/a13e1e5c/.magento-upgrade-eve/runs/upg-20261109-223732-30223f/flows/before.json  bodies: /home/a13e1e5c/.magento-upgrade-eve/runs/upg-20261109-223732-30223f/flows/before.bodies/\n",
+      "stderrHead": "",
+      "at": "2026-11-09T22:38:20.740Z"
+    },
+    {
+      "n": 3,
+      "step": "upgrade-check",
+      "command": "bash '/home/a13e1e5c/.magento-upgrade-eve/programs-73a5afd2dfcf/magento-upgrade-check.sh' -r '/home/a13e1e5c/d46515efa7.nxcli.io' --pretty",
+      "exitCode": 2,
+      "durationMs": 9529,
+      "outputRef": "commands/003.log",
+      "stdoutHead": "{\n    \"schema_version\": 1,\n    \"script_version\": \"1.1\",\n    \"generated_at\": \"2026-11-09T22:38:25Z\",\n    \"host\": \"cloudhost-2120374.us-midwest-1.nxcli.net\",\n    \"root\": \"/chroot/home/a13e1e5c/d46515efa7.nxcli.io\",\n    \"run_as\": \"a13e1e5c\",\n    \"duration_s\": 8,\n    \"verdict\": 2,\n    \"verdict_label\": \"upgrade path ok but needs a server migration\",\n    \"description\": \"2.4.8-p4 -> 2.4.8-p5 works for the code, but this host is not on the supported list: mariadb: 2.4.8-p5 lists mariadb 11.4, 11.8; this host runs 10.5.16 (SELECT VERSION(), already off the 2.4.8-p4 list too); opensearch: 2.4.8-p5 lists\n... [7235 characters omitted] ...\n-test checkout, admin and a reindex\"\n    ],\n    \"source\": {\n        \"magento_watch\": \"https://magento.watch/versions\",\n        \"api\": \"https://magento.watch/api/v1/magento-community/versions\"\n    }\n}\n",
+      "stderrHead": "  ... database\n  ... version\n  ... host software\n  ... magento.watch\n  ... verdict\n",
+      "at": "2026-11-09T22:38:33.667Z"
+    },
+    {
+      "n": 4,
+      "step": "upgrade-plan",
+      "command": "cd ~ && bash '/home/a13e1e5c/.magento-upgrade-eve/programs-73a5afd2dfcf/magento-patch-upgrade.sh' -r '/home/a13e1e5c/d46515efa7.nxcli.io' --allow-ip '8.29.157.129,127.0.0.1' --health-url 'https://d46515efa7.nxcli.io/' --min-score 50 --wait-cron 120 --workdir '/home/a13e1e5c/.magento-upgrade-eve/server-runs' --plan",
+      "exitCode": 0,
+      "durationMs": 18679,
+      "outputRef": "commands/004.log",
+      "stdoutHead": "2026-11-09T22:38:37Z  INFO   [preflight] magento-patch-upgrade.sh 1.2 run 20261109T223837Z for /chroot/home/a13e1e5c/d46515efa7.nxcli.io as a13e1e5c on cloudhost-2120374.us-midwest-1.nxcli.net; run dir /chroot/home/a13e1e5c/.magento-upgrade-eve/server-runs/chroot_home_a13e1e5c_d46515efa7.nxcli.io/20261109T223837Z\n2026-11-09T22:38:37Z  INFO   [preflight] mode: plan\n2026-11-09T22:38:37Z  INFO   [preflight 1/21 preflight.environment] ==> STEP 1/21 preflight.environment: START (took 6s last time)\n2026-11-09T22:38:37Z  INFO   [preflight 1/21 preflight.environment] run: php bin/magento --version (in\n... [5799 characters omitted] ...\n8:55Z  INFO   [preflight] --plan: stopping here, nothing was changed. Plan in /chroot/home/a13e1e5c/.magento-upgrade-eve/server-runs/chroot_home_a13e1e5c_d46515efa7.nxcli.io/20261109T223837Z/plan.txt\n",
+      "stderrHead": "2026-11-09T22:38:43Z  WARN   [preflight 1/21 preflight.environment] setup:db:status already reports rc=2 before the upgrade: Declarative Schema is not up to date Run 'setup:upgrade' to update your DB schema and data. \n2026-11-09T22:38:53Z  WARN   [preflight 2/21 preflight.feasibility] verdict 2: the\n... [256 characters omitted] ...\nady off the 2.4.8-p4 list too)\"]); the code upgrade proceeds, the host migration is a separate task\n",
+      "at": "2026-11-09T22:38:56.958Z"
+    },
+    {
+      "n": 5,
+      "step": "upgrade-to-verify",
+      "command": "cd ~ && bash '/home/a13e1e5c/.magento-upgrade-eve/programs-73a5afd2dfcf/magento-patch-upgrade.sh' -r '/home/a13e1e5c/d46515efa7.nxcli.io' --allow-ip '8.29.157.129,127.0.0.1' --health-url 'https://d46515efa7.nxcli.io/' --min-score 50 --wait-cron 120 --workdir '/home/a13e1e5c/.magento-upgrade-eve/server-runs' --until verify; echo \"__RC__=$?\"",
+      "exitCode": 0,
+      "durationMs": 0,
+      "outputRef": "commands/005.log",
+      "stdoutHead": "detached pid 18766",
+      "stderrHead": "",
+      "at": "2026-11-09T22:39:05.938Z"
+    },
+    {
+      "n": 6,
+      "step": "after-flow-tests",
+      "command": "mkdir -p '/home/a13e1e5c/.magento-upgrade-eve/runs/upg-20261109-223732-30223f/flows' && bash '/home/a13e1e5c/.magento-upgrade-eve/programs-73a5afd2dfcf/magento-flow-test.sh' --base 'https://d46515efa7.nxcli.io' --label 'after' -o '/home/a13e1e5c/.magento-upgrade-eve/runs/upg-20261109-223732-30223f/flows/after.json' --quiet --baseline '/home/a13e1e5c/.magento-upgrade-eve/runs/upg-20261109-223732-30223f/flows/before.json' --admin-path 'ae60be3fdf_admin'",
+      "exitCode": 0,
+      "durationMs": 33023,
+      "outputRef": "commands/006.log",
+      "stdoutHead": "RESULT: pass (14 passed, 0 failed, 1 skipped, 32s); slower: graphql(691ms->2321ms)\njson: /home/a13e1e5c/.magento-upgrade-eve/runs/upg-20261109-223732-30223f/flows/after.json  bodies: /home/a13e1e5c/.magento-upgrade-eve/runs/upg-20261109-223732-30223f/flows/after.bodies/\n",
+      "stderrHead": "",
+      "at": "2026-11-09T22:46:51.594Z"
+    },
+    {
+      "n": 7,
+      "step": "deploy-reopen",
+      "command": "cd ~ && bash '/home/a13e1e5c/.magento-upgrade-eve/programs-73a5afd2dfcf/magento-patch-upgrade.sh' --reopen '/chroot/home/a13e1e5c/.magento-upgrade-eve/server-runs/chroot_home_a13e1e5c_d46515efa7.nxcli.io/20261109T223905Z' --health-url 'https://d46515efa7.nxcli.io/'",
+      "exitCode": 0,
+      "durationMs": 13844,
+      "outputRef": "commands/007.log",
+      "stdoutHead": "2026-11-09T22:46:54Z  INFO   [window] --reopen: deploying run /chroot/home/a13e1e5c/.magento-upgrade-eve/server-runs/chroot_home_a13e1e5c_d46515efa7.nxcli.io/20261109T223905Z (2.4.8-p4 -> 2.4.8-p5); the store was in maintenance for 119s\n2026-11-09T22:46:54Z  INFO   [window 18/21 window.maintenance-off] ==> STEP 18/21 window.maintenance-off: START (took 1s last time)\n2026-11-09T22:46:54Z  INFO   [window 18/21 window.maintenance-off] run: php bin/magento --no-interaction --no-ansi maintenance:disable (in /chroot/home/a13e1e5c/d46515efa7.nxcli.io)\n2026-11-09T22:46:55Z  INFO   [window 18/21 window\n... [1565 characters omitted] ...\n3e1e5c/d46515efa7.nxcli.io from 2.4.8-p4 to 2.4.8-p5; maintenance window 120s; run dir /chroot/home/a13e1e5c/.magento-upgrade-eve/server-runs/chroot_home_a13e1e5c_d46515efa7.nxcli.io/20261109T223905Z\n",
+      "stderrHead": "",
+      "at": "2026-11-09T22:47:07.442Z"
+    },
+    {
+      "n": 8,
+      "step": "final-flow-tests",
+      "command": "mkdir -p '/home/a13e1e5c/.magento-upgrade-eve/runs/upg-20261109-223732-30223f/flows' && bash '/home/a13e1e5c/.magento-upgrade-eve/programs-73a5afd2dfcf/magento-flow-test.sh' --base 'https://d46515efa7.nxcli.io' --label 'final' -o '/home/a13e1e5c/.magento-upgrade-eve/runs/upg-20261109-223732-30223f/flows/final.json' --quiet --baseline '/home/a13e1e5c/.magento-upgrade-eve/runs/upg-20261109-223732-30223f/flows/before.json' --admin-path 'ae60be3fdf_admin'",
+      "exitCode": 0,
+      "durationMs": 27482,
+      "outputRef": "commands/008.log",
+      "stdoutHead": "RESULT: pass (14 passed, 0 failed, 1 skipped, 26s)\njson: /home/a13e1e5c/.magento-upgrade-eve/runs/upg-20261109-223732-30223f/flows/final.json  bodies: /home/a13e1e5c/.magento-upgrade-eve/runs/upg-20261109-223732-30223f/flows/final.bodies/\n",
+      "stderrHead": "",
+      "at": "2026-11-09T22:47:38.781Z"
+    },
+    {
+      "n": 9,
+      "step": "post-reads",
+      "command": "cd '/home/a13e1e5c/d46515efa7.nxcli.io' && 'php' bin/magento indexer:status --no-ansi 2>&1 | tail -n 25; echo \"__CRON__\"; crontab -l 2>/dev/null | grep -cE 'bin/magento|cron\\.php|cron\\.sh'",
+      "exitCode": 0,
+      "durationMs": 1908,
+      "outputRef": "commands/009.log",
+      "stdoutHead": "+----------------------------------+---------------------------+--------+-----------+---------------------+---------------------+\n| ID                               | Title                     | Status | Update On | Schedule Status     | Schedule Updated    |\n+----------------------------------+---------------------------+--------+-----------+---------------------+---------------------+\n| catalogrule_product              | Catalog Product Rule      | Ready  | Schedule  | idle (0 in backlog) | 2026-11-09 22:45:46 |\n| catalogrule_rule                 | Catalog Rule Product      | Ready  | Schedu\n... [1551 characters omitted] ...\n | Schedule  | idle (0 in backlog) | 2026-11-09 22:45:47 |\n+----------------------------------+---------------------------+--------+-----------+---------------------+---------------------+\n__CRON__\n3\n",
+      "stderrHead": "",
+      "at": "2026-11-09T22:47:54.006Z"
+    }
+  ],
+  "decisions": [],
+  "evidence": {
+    "check": {
+      "verdict": 2,
+      "label": "upgrade path ok but needs a server migration",
+      "score": 57,
+      "description": "2.4.8-p4 -> 2.4.8-p5 works for the code, but this host is not on the supported list: mariadb: 2.4.8-p5 lists mariadb 11.4, 11.8; this host runs 10.5.16 (SELECT VERSION(), already off the 2.4.8-p4 list too); opensearch: 2.4.8-p5 lists opensearch 3; this host runs 2.19.4 (search endpoint, already off the 2.4.8-p4 list too) (the host is already outside the list for the installed release, the target does not change that). Also to prepare: nginx: 2.4.8-p5 lists nginx 1.30; this host runs 1.24.0 (nginx -v, already off the 2.4.8-p4 list too); dev branches: 1 package(s) locked to a dev- branch; a branch deleted upstream makes a full composer update fail (partial updates keep the lock)"
+    },
+    "flows": {
+      "before": {
+        "label": "before",
+        "result": "pass",
+        "passed": 14,
+        "failed": 0,
+        "criticalFailed": [],
+        "regressions": [],
+        "preexisting": [],
+        "slower": [],
+        "homeMs": 799,
+        "productMs": 1058,
+        "checkoutOk": true
+      },
+      "after": {
+        "label": "after",
+        "result": "pass",
+        "passed": 14,
+        "failed": 0,
+        "criticalFailed": [],
+        "regressions": [],
+        "preexisting": [],
+        "slower": [
+          "graphql(691ms->2321ms)"
+        ],
+        "homeMs": 1964,
+        "productMs": 1112,
+        "checkoutOk": true
+      },
+      "final": {
+        "label": "final",
+        "result": "pass",
+        "passed": 14,
+        "failed": 0,
+        "criticalFailed": [],
+        "regressions": [],
+        "preexisting": [],
+        "slower": [],
+        "homeMs": 796,
+        "productMs": 1118,
+        "checkoutOk": true
+      }
+    },
+    "ttfb": {
+      "baselineMs": 1058,
+      "afterMs": 1964,
+      "budgetMs": 2116,
+      "ok": true
+    },
+    "logDelta": {
+      "criticalLines": 0,
+      "exceptionLines": 0
+    },
+    "indexers": "all indexers valid",
+    "cron": "3 Magento cron line(s) active",
+    "health": "see reopen step (health check by the program)",
+    "visualDiff": "not implemented in this version (screenshots need a browser on the clone)",
+    "serverRun": {
+      "runDir": "/chroot/home/a13e1e5c/.magento-upgrade-eve/server-runs/chroot_home_a13e1e5c_d46515efa7.nxcli.io/20261109T223905Z",
+      "phase": "awaiting_decision",
+      "exitCode": 0,
+      "storeOpen": true
+    }
+  },
+  "verdict": {
+    "tier": "green",
+    "reasons": [
+      "every critical flow passes as before, no regression, TTFB within budget, no new log lines; host off the supported list for the installed release already (pre-existing migration items recorded, not introduced by this hop); slower only on the cold clone right after the window (graphql(691ms->2321ms)), normal again in the final run"
+    ]
+  },
+  "gates": [],
+  "pr": null,
+  "pointers": {
+    "reportJson": "/Users/mbalparda/magento2/eve-magento-upgrader/.eve/upgrader/reports/upg-20261109-223732-30223f/report.json",
+    "reportMd": "/Users/mbalparda/magento2/eve-magento-upgrader/.eve/upgrader/reports/upg-20261109-223732-30223f/report.md",
+    "commandLogs": "/Users/mbalparda/magento2/eve-magento-upgrader/.eve/upgrader/reports/upg-20261109-223732-30223f/commands",
+    "traceHint": "Agent Runs: search gen_ai.conversation.id or the tool call that returned runId upg-20261109-223732-30223f"
+  },
+  "errors": [
+    "log noise: one flow run writes 1 critical and 2 exception lines on this store before any change; raw delta after the hop was 2/4"
+  ]
+}
